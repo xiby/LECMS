@@ -1,0 +1,27 @@
+body {
+    background:url(/static/bg/bg3.png) #f8f6e9;
+}
+.mycenter{
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 350px;
+    width:500px;
+    padding: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.mycenter mysign{
+    width: 440px;
+}
+.mycenter input,checkbox,button{
+    margin-top:2%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.myradio{
+    margin-top:10px;
+    margin-left: 80px;
+    margin-bottom: 10px;
+    height: 10px;
+}
