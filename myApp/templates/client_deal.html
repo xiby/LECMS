@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="../../favicon.ico">
+        <title>用户订单查询</title>
+        <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    </head>
+    <body STYLE="BACKGROUND-COLOR:lightgrey;">
+      <div class="container" id="wrapper">
+        <header  class="navbar navbar-inverse navbar-fixed-top" id="top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="" class="navbar-brand">回到首页</a>
+                </div>
+                <nav id="bs-navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="" target="_blank" class="navbar-brand">物流查询</a>
+                        </li>
+                        <li>
+                            <a href="" target="_blank" class="navbar-brand">价格查询</a>
+                        </li>
+                        <li>
+                            <a href="" target="_blank" class="navbar-brand">发布招标信息</a>
+                         </li>
+                       <!--在各个href中添加 页面链接-->
+                    </ul>>
+                </nav>
+            </div>
+        </header>  
+        <hr>
+        <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">查看</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                            查找指定物流信息
+                            </div>
+                                <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <form name="client_deal" method="post">
+                                    <div class="row">
+                                        <div class="col-md-offset-2 col-md-2">
+                                            <label for="wuliuId" class="sr-only">物流编号</label>
+                                            <input type="text" name="wuliuId" class="form-control" placeholder="物流编号(0 is null)" required autofocus>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label for="wlstatus" class="sr-only">物流状态</label>
+                                            <input type="text" name="wlstatus" class="form-control" placeholder="物流状态(0 is null)" required autofocus>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label for="Sperson" class="sr-only">收件人</label>
+                                            <input type="text" name="Sperson" class="form-control" placeholder="收件人(0 is null)" required autofocus>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button type="submit" class="btn btn-default">查找</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <hr>
+                                <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                            <!--订单信息,需要从数据库中选出指定内容后导入-->
+                                        <tr>
+                                            <th>物流编号</th>
+                                            <th>始发地</th>
+                                            <th>终点</th>
+                                            <th>收件人</th> 
+                                            <th>寄件人</th>
+                                            <th>运费价格</th>
+                                            <th>订单状态</th>
+                                           
+                                        </tr>
+                                    </thead>
+                                            <tbody>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>   
+                                            </tbody>
+                                </table>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div> 
+    </body>
+</html>
+
