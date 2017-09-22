@@ -65,4 +65,3 @@ class feedback(models.Model):
     info=models.CharField(max_length=100)       #用户的反馈信息
     replyinfo=models.CharField(max_length=100)         #回复信息
     state=models.BooleanField()             #处理信息
-
