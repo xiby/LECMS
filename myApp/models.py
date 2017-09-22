@@ -30,7 +30,7 @@ class invTable(models.Model):
 class bidTable(models.Model):           #投标表，由公司创建
     bidNUM=models.CharField(max_length=20,primary_key=True)             #每一份投标记录的唯一编号
     bidCom=models.ForeignKey(ComTable,on_delete=models.CASCADE,default=None)
-    invNUM=models.ForeignKey(invTable,on_delete=models.CASCADE,default="123")      
+    invNUM=models.ForeignKey(invTable,on_delete=models.Ct="123")      
     #投标公司的ID，设置为级联删除，且默认设置为空，等交易确认后再填写对应字段
     price=models.IntegerField()         #投标公司发布的价格
     costTime=models.FloatField()        #！！！！！！！！！！此处将原来的时间换成了最长所用时间
@@ -41,7 +41,7 @@ class orderTable(models.Model):
     orderNUM=models.CharField(max_length=20,primary_key=True)       #每一份订单对应的唯一编号
     startPoint=models.IntegerField()        #订单的起始城市
     destination=models.IntegerField()       #订单的终点
-    CustID=models.ForeignKey(CustTable,on_delete=models.CASCADE)       #产生订单的用户，参考用户表
+    CustID=models.ForeignKey(CustTASCADE,defaulable,on_delete=models.CASCADE)       #产生订单的用户，参考用户表
     ComID=models.ForeignKey(ComTable,on_delete=models.CASCADE)         #产生订单的公司，参考公司表
     cost=models.IntegerField()          #订单的费用，由公司给出
     startDate=models.DateField()        #！！！！！！新增------订单的产生日期

@@ -13,13 +13,13 @@ def login(request):
     '''模拟的公司登陆函数'''
     if request.method=='GET':
         return render(request,'comlogin_test.html')
-    name=request.POST['username']
-    pswd=request.POST['password']
     if request.method=='POST':
+        name=request.POST['username']
+        pswd=request.POST['password']
         try:
-            print(name,pswd)
+            # print(name,pswd)
             company=ComTable.objects.get(ComID=name,ComPSW=pswd)
-            response=redirect('/company/main/')
+            response=redirect('/myApp/company/main/')
             response.set_cookie('comID',name)
             print(name,pswd)
             return response
