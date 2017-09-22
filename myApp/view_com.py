@@ -19,7 +19,7 @@ def login(request):
         try:
             print(name,pswd)
             company=ComTable.objects.get(ComID=name,ComPSW=pswd)
-            response=redirect('/myApp/company/main')
+            response=redirect('/company/main/')
             response.set_cookie('comID',name)
             print(name,pswd)
             return response
