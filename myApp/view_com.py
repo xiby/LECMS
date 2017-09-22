@@ -49,12 +49,14 @@ def searchInv(request):
         tmpbidNUM=uuid.uuid1()
         print(tmpbidNUM)
         tmpbidCom=request.COOKIES['comID']
+        tmpinvNUM=request.POST['invNUM']
         tmpprice=request.POST['price']
         tmpdat=request.POST['dat']
         tmpinvNUM=request.POST['invNUM']
         try:
             tmpCom=ComTable.objects.get(ComID=tmpbidCom)
-            newbid=bidTable(bidNUM=tmpbidNUM,bidCom=tmpCom,price=tmpprice,costTime=tmpdat,mark=False)
+            tmpinv=invTable.objects.get(invNUM=tmpinvNUM)
+            newbid=bidTable(bidNUM=tmpbidNUM,bidCom=tmpCom,price=tmpprice,costTime=tmpdat,mark=False,invNUM=tmpinv)
             newbid.save()
         except:
             pass
@@ -71,10 +73,11 @@ def searchInv(request):
             data.append(tmp)
         return render(request,'showInv.html',{'data':data})
         
-
 def givePrice(request):
     if request.method=="GET":
         return render(request,'givePrice.html')
+    else:
+        pass
 def orderManager(request):
     if request.method=='GET':
         return render(request,'')
