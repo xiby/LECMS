@@ -17,6 +17,7 @@ def login(request):
         print(request.body)
         name=request.POST['username']
         pswd=request.POST['password']
+        state=request.POST['state']
         print(name,pswd)
         # me=people()
         people=UserInfo.objects.all()
