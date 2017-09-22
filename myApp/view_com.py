@@ -8,6 +8,7 @@ from django.http import HttpResponseRedirect
 from myApp.models import ComTable
 from myApp.models import invTable
 from myApp.models import bidTable
+from myApp.models import price
 
 def login(request):
     '''模拟的公司登陆函数'''
@@ -77,7 +78,16 @@ def givePrice(request):
     if request.method=="GET":
         return render(request,'givePrice.html')
     else:
-        pass
+        comp=request.COOKIES['comID']
+        tmpWeight=request.POST['weight']
+        tmpPrice=request.POST['price']
+        print(tmpWeight,tmpPrice)
+        company=ComTable.objects.get(ComID=comp)
+        cp=price(ComNUM=company,weight=tmpWeight,pricing=tmpPrice)
+        cp.save()
+        print('保存成功')
+        return render(request,'givePrice.html')
+        return render(request,'givePrice.html')
 def orderManager(request):
     if request.method=='GET':
         return render(request,'')
