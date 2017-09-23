@@ -46,7 +46,7 @@ class orderTable(models.Model):
     cost=models.IntegerField()          #订单的费用，由公司给出
     startDate=models.DateField()        #！！！！！！新增------订单的产生日期
     costTime=models.IntegerField()      #运输实际花费的时间，在完成后填写
-    state=models.CharField(max_length=10)   #订单的状态，包括待发货等等
+    state=models.IntegerField()   #订单的状态，包括待发货等等
     loginfo=models.CharField(max_length=100)    #物流信息，用字符串来表示，不同城市用空格按顺序隔开
 
 class carTable(models.Model):

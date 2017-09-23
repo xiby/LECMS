@@ -5,11 +5,15 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 
+from myApp.models import CustTable
 from myApp.models import ComTable
 from myApp.models import invTable
 from myApp.models import bidTable
 from myApp.models import price
+from myApp.models import orderTable
 
+
+state=['待发货','运输中','已送达','确认送达','交易成功']
 def login(request):
     '''模拟的公司登陆函数'''
     if request.method=='GET':
@@ -88,5 +92,32 @@ def givePrice(request):
         print('保存成功')
         return render(request,'givePrice.html')
 def orderManager(request):
-    if request.method=='GET':
-        return render(request,'orderManger.html')
+    if request.method=='POST':
+        ordernum=request.POST['ordernum']
+        next=request.POST['nextposition']
+        try:
+            order=orderTable.objects.get(orderNUM=ordernum)
+            order.loginfo=order.loginfo+' '+next
+            if int(ordernum)==order.destination:
+                order.state=2
+            order.save()
+        except:
+            pass
+    comID=request.COOKIES['comID']
+    try:
+        company=ComTable.objects.get(ComID=comID)
+        ans=orderTable.objects.filter(ComID=company,state__lt=4)
+        data=list()
+        for item in ans:
+            d=dict()
+            d['orderNUM']=item.orderNUM
+            d['startPoint']=item.startPoint
+            d['destination']=item.destination
+            d['position']=item.loginfo.split(' ')[-1]
+            d['custID']=item.CustID.CustID
+            d['startDate']=item.startDate
+            d['state']=state[item.state]
+            data.append(d)
+    except:
+        pass
+    return render(request,'orderManger.html',{'data':data})
