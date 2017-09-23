@@ -40,13 +40,41 @@
                 </nav>
             </div>
         </header>
+        <hr>
+        <hr>
         <div class="jumbotron">
             <div class="container">
-                <form method="post">
-                    <input type="number" name="weight" />
-                    <input type="number" name="price" />
-                    <input type="submit" name="confirm" />
-                </form>
+                <hr>
+                <hr>
+                <div class="row">
+                    <div class="col-md-offset-3 col-md-2">
+                            <p><span class="label label-primary">重量</span></p>    
+                    </div>
+                    <div class="col-md-offset-1 col-md-2">
+                            <p><span class="label label-primary">距离</span></p>    
+                    </div>
+                </div>    
+                <!--主体部分在这里-->
+             <form name="givePrice" method="post">
+                <div class="row">
+                    <div class="col-md-offset-2 col-md-3">  
+                        <label for="weight" class="sr-only">重量</label>
+                        <input type="number" name="weight" class="form-control" placeholder="请输入货物质量(kg)" required autofocus>
+                    </div>
+                     <!--这里价格改为了距离-->
+                    <div class="col-md-3">
+                        <label for="distance" class="sr-only">距离</label>
+                        <input type="number" name="price" class="form-control" placeholder="请输入运输长度(km)" required autofocus>
+                    </div>
+                     <!--按钮可能不要 name 就是name="confirm"可能不需要 -->
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary" name="confirm">查询</button>
+                    </div>
+                </div>
+            </form>
+             <!--主体部分在这里-->
+            <hr>
+            <hr>
             </div>
         </div>
     </div>

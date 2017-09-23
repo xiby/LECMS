@@ -87,7 +87,6 @@ def givePrice(request):
         cp.save()
         print('保存成功')
         return render(request,'givePrice.html')
-        return render(request,'givePrice.html')
 def orderManager(request):
     if request.method=='GET':
         return render(request,'')
