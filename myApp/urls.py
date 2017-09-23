@@ -10,4 +10,5 @@ urlpatterns=[
     url(r'^company/login/',view_com.login,name="com_login"),
     url(r'company/showInv',view_com.searchInv,name="showInv"),
     url(r'company/givePrice',view_com.givePrice),
+    url(r'company/orderManger',view_com.orderManager),
 ]

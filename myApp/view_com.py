@@ -89,4 +89,4 @@ def givePrice(request):
         return render(request,'givePrice.html')
 def orderManager(request):
     if request.method=='GET':
-        return render(request,'')
+        return render(request,'orderManger.html')
