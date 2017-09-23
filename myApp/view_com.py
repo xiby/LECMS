@@ -12,6 +12,8 @@ from myApp.models import bidTable
 from myApp.models import price
 from myApp.models import orderTable
 
+import datetime
+
 
 state=['待发货','运输中','已送达','确认送达','交易成功']
 def login(request):
@@ -92,32 +94,58 @@ def givePrice(request):
         print('保存成功')
         return render(request,'givePrice.html')
 def orderManager(request):
-    if request.method=='POST':
+    if request.method=='POST' and request.POST['pname']=='logi':
+        # print()
         ordernum=request.POST['ordernum']
         next=request.POST['nextposition']
         try:
-            order=orderTable.objects.get(orderNUM=ordernum)
+            order=orderTable.objects.get(orderNUM=ordernum,state__lt=2)
             order.loginfo=order.loginfo+' '+next
-            if int(ordernum)==order.destination:
+            if int(next)==order.destination:
                 order.state=2
             order.save()
         except:
             pass
+    if request.method=='POST' and request.POST['pname']=='deliver':
+        ordernum=request.POST['ordernum']
+        try:
+            order=orderTable.objects.get(orderNUM=ordernum,state=0)
+            order.state=1
+            order.loginfo=order.startPoint
+            order.startDate=datetime.datetime.now().strftime('%Y-%m-%d')
+            order.save()
+        except:
+            pass
     comID=request.COOKIES['comID']
+    data1=list()
+    data2=list()
     try:
         company=ComTable.objects.get(ComID=comID)
-        ans=orderTable.objects.filter(ComID=company,state__lt=4)
-        data=list()
+        ans=orderTable.objects.filter(ComID=company,state__lt=3,state__gt=0)
         for item in ans:
             d=dict()
             d['orderNUM']=item.orderNUM
             d['startPoint']=item.startPoint
             d['destination']=item.destination
             d['position']=item.loginfo.split(' ')[-1]
+            d['optmpath']=item.optmpath
             d['custID']=item.CustID.CustID
             d['startDate']=item.startDate
             d['state']=state[item.state]
-            data.append(d)
+            data1.append(d)
     except:
         pass
-    return render(request,'orderManger.html',{'data':data})
+    try:
+        company=ComTable.objects.get(ComID=comID)
+        ans=orderTable.objects.filter(ComID=company,state=0)
+        for item in ans:
+            d=dict()
+            d['orderNUM']=item.orderNUM
+            d['CustID']=item.CustID.CustID
+            d['startPoint']=item.startPoint
+            d['destination']=item.destination
+            d['state']=state[item.state]
+            data2.append(d)
+    except:
+        pass
+    return render(request,'orderManger.html',{"data":{"data1":data1,"data2":data2}})

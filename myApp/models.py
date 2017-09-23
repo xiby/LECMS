@@ -43,11 +43,12 @@ class orderTable(models.Model):
     destination=models.IntegerField()       #订单的终点
     CustID=models.ForeignKey(CustTable,on_delete=models.CASCADE)       #产生订单的用户，参考用户表
     ComID=models.ForeignKey(ComTable,on_delete=models.CASCADE)         #产生订单的公司，参考公司表
-    cost=models.IntegerField()          #订单的费用，由公司给出
-    startDate=models.DateField()        #！！！！！！新增------订单的产生日期
-    costTime=models.IntegerField()      #运输实际花费的时间，在完成后填写
+    cost=models.IntegerField(null=True)          #订单的费用，由公司给出
+    startDate=models.DateField(null=True)        #！！！！！！新增------订单的产生日期
+    costTime=models.IntegerField(null=True)      #运输实际花费的时间，在完成后填写
     state=models.IntegerField()   #订单的状态，包括待发货等等
-    loginfo=models.CharField(max_length=100)    #物流信息，用字符串来表示，不同城市用空格按顺序隔开
+    loginfo=models.CharField(max_length=100,null=True)    #物流信息，用字符串来表示，不同城市用空格按顺序隔开
+    optmpath=models.CharField(max_length=100)   #最优路径，在产生订单时就产生
 
 class carTable(models.Model):
     '''车辆信息表，为公司所有'''
