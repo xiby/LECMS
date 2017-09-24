@@ -9,6 +9,7 @@ class UserInfo(models.Model):           #测试用表
 class CustTable(models.Model):          #用户信息表
     CustID=models.CharField(max_length=10)      #用户注册时，以及之后用于登陆的用户名
     CustPSW=models.CharField(max_length=15)     #用户用于登陆的密码
+    CustName=models.CharField(max_length=20,null=True)    #用户姓名
 
 class ComTable(models.Model):           #公司信息表
     ComID=models.CharField(max_length=10)       #公司注册时，以及之后用于登陆的用户名
@@ -41,6 +42,7 @@ class orderTable(models.Model):
     orderNUM=models.CharField(max_length=20,primary_key=True)       #每一份订单对应的唯一编号
     startPoint=models.IntegerField()        #订单的起始城市
     destination=models.IntegerField()       #订单的终点
+    receiver=models.CharField(max_length=20)    #订单收件人
     CustID=models.ForeignKey(CustTable,on_delete=models.CASCADE)       #产生订单的用户，参考用户表
     ComID=models.ForeignKey(ComTable,on_delete=models.CASCADE)         #产生订单的公司，参考公司表
     cost=models.IntegerField(null=True)          #订单的费用，由公司给出

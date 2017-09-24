@@ -7,6 +7,18 @@
     <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/static/css/style_login.css" />
     <script src="/static/js/bootstrap.min.js"></script>
+    <script>
+        function doPOST(btn) {
+            var myform = document.getElementsByTagName("form")[0]
+            var myType = document.createElement("input")
+            myType.type = "text"
+            myType.name = "type"
+            myType.value = "signin"
+            myform.appendChild(myType)
+            myform.submit()
+            alert("登陆请求已发送")
+        }
+    </script>
 </head>
 
 <body>
@@ -25,11 +37,9 @@
                 </div>
                 <div class="col-lg-10"></div>
                 <div class="col-lg-10">
-                    <input type="radio" name="state" value="user">用户</input>
-                    <input type="radio" name="state" value="company">公司</input>
                 </div>
                 <div class="col-lg-10">
-                    <button type="button" class="btn btn-success col-lg-12" name="login" onclick="document.getElementsByTagName('form')[0].submit();" ")">登录</button>
+                    <button type="button" class="btn btn-success col-lg-12" name="login" onclick="doPOST(this)">登录</button>
                     <button type="button" class="btn btn-success col-lg-12" name="signup">注册</button>
                 </div>
             </div>
